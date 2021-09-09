@@ -1,3 +1,6 @@
+.md_cache
+.md_credentials
+
 # Logs
 logs
 *.log

@@ -1,11 +1,14 @@
 {
-  "name": "mangadex-to-paperback",
+  "name": "md2pb",
   "version": "0.0.0",
   "description": "Uses Mangadex API add titles to your Paperback backup",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
+  },
+  "bin": {
+    "md2pb": "./bin/index.js"
   },
   "author": "",
   "license": "MIT",
@@ -16,5 +19,10 @@
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "mangadex-full-api": "^5.5.0",
+    "uuid": "^8.3.2",
+    "yargs": "^17.1.1"
   }
 }
