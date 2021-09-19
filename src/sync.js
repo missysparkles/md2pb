@@ -43,7 +43,7 @@ MFA.Manga.getFeedCount = async (id, parameterObject = {}) => {
     `/manga/${id}/feed`,
     parameterObject
   );
-  if (!(resp.results instanceof Array) || typeof resp.total !== "number") {
+  if (!(resp.data instanceof Array) || typeof resp.total !== "number") {
     throw new APIRequestError(
       `The API did not respond the correct structure for a search request:\n${resp}`,
       APIRequestError.INVALID_RESPONSE
@@ -97,7 +97,7 @@ function addRepositoryAndSource(backup) {
       contentRating: "EVERYONE",
       websiteBaseURL: "https://mangadex.org",
       repo: "https://paperback-ios.github.io/extensions-sources/primary",
-      version: "2.0.14",
+      version: "2.1.2",
       icon: "icon.png",
       name: "MangaDex",
     });
@@ -218,9 +218,9 @@ exports.sync = async function sync(username, password, filename) {
     const sourceManga = backup.sourceMangas.find((sm) => sm.mangaId === id);
     // if manga is completely new, create the source manga
     if (!sourceManga) {
-      // get manga with resolved details
-      const manga = await MFA.Manga.get(id, true);
       try {
+        // get manga with resolved details
+        const manga = await MFA.Manga.get(id, true);
         const mangaInfo = await createMangaInfo(manga);
         backup.sourceMangas.push({
           mangaId: id,
